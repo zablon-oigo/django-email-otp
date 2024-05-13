@@ -30,4 +30,6 @@ class UserManagerTest(TestCase):
             email="superuser@mail.com",
             password="secret."
         )
-        
+        self.assertEqual(self.email, "superuser@mail.com")
+        self.assertTrue(self.is_active)
+        self.assertTrue(self.is_staff)
