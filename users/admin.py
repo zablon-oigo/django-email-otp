@@ -13,4 +13,13 @@ class CutomUserAdmin(UserAdmin):
         ("Permissions",{"fields":("is_staff","is_active","groups","user_permissions")}),
 
     )
-    
+    add_fieldsets=(
+        (None,{
+            "classes":("wide",),
+            "fields":(
+                "email","passsword1","password2","is_staff",
+                "is_active","groups","user_permissions"
+            ) 
+        }
+        ),
+    )
