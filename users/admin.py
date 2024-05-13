@@ -23,3 +23,6 @@ class CutomUserAdmin(UserAdmin):
         }
         ),
     )
+    search_fields=("email",)
+    ordering=("email",)
+    
