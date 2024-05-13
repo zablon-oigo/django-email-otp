@@ -5,3 +5,7 @@ class CustomuserCreationForm(UserCreationForm):
     class Meta:
         model=CustomUser
         fields=("email",)
+class CustomerUserChangeForm(UserChangeForm):
+    class Meta:
+        model=CustomUser
+        fields=("email",)
