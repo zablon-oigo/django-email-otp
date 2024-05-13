@@ -25,3 +25,9 @@ class UserManagerTest(TestCase):
             User.objects.create_user(email="")
         with self.assertRaises(ValueError):
             User.objects.create_user(email="", password="secret")
+    def test_create_superuser(self):
+        admin_user=User.objects.create_superuser(
+            email="superuser@mail.com",
+            password="secret."
+        )
+        
