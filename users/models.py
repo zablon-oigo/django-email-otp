@@ -22,3 +22,6 @@ class OTPToken(models.Model):
     otp_code=models.CharField(max_length=6,default=secrets.token_hex(3))
     created=models.DateTimeField(auto_now_add=True)
     expire=models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.email
