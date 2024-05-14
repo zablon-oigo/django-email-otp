@@ -34,3 +34,13 @@ class UserManagerTest(TestCase):
         self.assertTrue(admin_user.is_active)
         self.assertTrue(admin_user.is_staff)
         self.assertTrue(admin_user.is_superuser)
+        try:
+            self.assertIsNone(admin_user.username)
+        except AttributeError:
+            pass
+        with self.assertRaises(ValueError):
+            User.objects.create_superuser(
+                email="superuser@mail.com",
+                password="secret.",
+                is_speruser=False
+            )
