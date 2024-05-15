@@ -25,3 +25,5 @@ def create_token(sender, instance, created, **kwargs):
                                 http://127.0.0.1:8000/verify-email/{instance.email}
                                 
                                 """
+        sender=""
+        
