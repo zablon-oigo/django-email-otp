@@ -26,4 +26,11 @@ def create_token(sender, instance, created, **kwargs):
                                 
                                 """
         sender=""
-        
+        receiver = [instance.email, ]
+        send_mail(
+                subject,
+                message,
+                sender,
+                receiver,
+                fail_silently=False,
+            )
