@@ -16,3 +16,6 @@ def create_token(sender, instance, created, **kwargs):
             OTPToken.objects.create(user=instance, expire=timezone.now() + timezone.timedelta(minutes=5))
             instance.is_active=False 
             instance.save()
+
+        otp = OTPToken.objects.filter(user=instance).last()
+        
