@@ -11,3 +11,8 @@ def create_token(sender, instance, created, **kwargs):
     if created:
         if instance.is_superuser:
             pass
+
+        else:
+            OTPToken.objects.create(user=instance, expire=timezone.now() + timezone.timedelta(minutes=5))
+            instance.is_active=False 
+            instance.save()
