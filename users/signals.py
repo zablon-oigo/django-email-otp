@@ -18,4 +18,10 @@ def create_token(sender, instance, created, **kwargs):
             instance.save()
 
         otp = OTPToken.objects.filter(user=instance).last()
-        
+        subject="Email Verification"
+        message = f"""
+                        Hello {instance.email}, here is your OTP {otp.otp_code} 
+                                it expires in 5 minute, use the url below to redirect back to the website
+                                http://127.0.0.1:8000/verify-email/{instance.email}
+                                
+                                """
