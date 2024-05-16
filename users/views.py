@@ -5,3 +5,9 @@ def index(request):
         "title":"Home Page"
     }
     return render(request, "index.html", context)
+
+def register_user(request):
+    if request.method == 'POST':
+        form=RegisterForm(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False)
