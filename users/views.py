@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib import messages
 def index(request):
     context={
@@ -14,3 +14,8 @@ def register_user(request):
             user.is_active=True
             user.save()
             messages.success(request, "Account created successfully,Please check your email")
+            return redirect("verify-email")
+    
+    else:
+        form=RegisterForm()
+    return render(request, "users/register.html",{"form":form})
