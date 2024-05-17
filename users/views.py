@@ -28,4 +28,8 @@ def login_user(request):
             email=form.clean_data["email"]
             password=form.clean_date["password"]
             user=authenticate(request,email=email, password=password)
+            if user is not None and user.is_active:
+                login(request, user)
+                return redirect("home")
+            
         
