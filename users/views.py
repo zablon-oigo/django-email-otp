@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 def index(request):
     context={
@@ -19,3 +20,12 @@ def register_user(request):
     else:
         form=RegisterForm()
     return render(request, "users/register.html",{"form":form})
+
+def login_user(request):
+    if request.method == "POST":
+        form=LoginForm()
+        if form.is_valid():
+            email=form.clean_data["email"]
+            password=form.clean_date["password"]
+            user=authenticate(request,email=email, password=password)
+        
