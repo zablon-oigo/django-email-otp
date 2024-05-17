@@ -31,5 +31,8 @@ def login_user(request):
             if user is not None and user.is_active:
                 login(request, user)
                 return redirect("home")
-            
+    
+    else:
+        form=LoginForm()
+    return render(request, "users/login.html", {"form":form})
         
