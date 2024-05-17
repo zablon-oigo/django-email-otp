@@ -23,7 +23,7 @@ def register_user(request):
 
 def login_user(request):
     if request.method == "POST":
-        form=LoginForm()
+        form=LoginForm(request.POST)
         if form.is_valid():
             email=form.clean_data["email"]
             password=form.clean_date["password"]
