@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .models import OTPToken
+from django.contrib.auth import get_user_model
+User=get_user_model()
+from django.utils import timezone
 def index(request):
     context={
         "title":"Home Page"
@@ -36,3 +40,14 @@ def login_user(request):
         form=LoginForm()
     return render(request, "users/login.html", {"form":form})
         
+
+def verify_email(request,email):
+        user = User.objects.get(email=email)
+        user_otp =OTPToken.objects.filter(user=user).last()
+
+        if request.method == "POST":
+            if user_otp.otp_code == request.POST['otp_code']:
+                if user_otp.otp_expires_at > timezone.now():
+                    user.is_active=True
+                    user.save()
+
