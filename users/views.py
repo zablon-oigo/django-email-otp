@@ -52,11 +52,15 @@ def verify_email(request,email):
                     user.save()
                     messages.success(request, "Account activated successfully!!")
                     return redirect("login")
+                else:
+                    messages.warning(request, "The OTP has expired, get a new OTP!")
+                    return redirect("verify-email", email=user.email)
             else:
-                messages.warning(request, "The OTP has expired, get a new OTP!")
+                messages.warning(request, "Invalid OTP entered, enter a valid OTP!")
                 return redirect("verify-email", email=user.email)
-        else:
-            messages.warning(request, "Invalid OTP entered, enter a valid OTP!")
-            return redirect("verify-email", email=user.email)
+        
+        context = {}
+        return render(request, "token.html", context)
+
             
 
