@@ -50,4 +50,6 @@ def verify_email(request,email):
                 if user_otp.otp_expires_at > timezone.now():
                     user.is_active=True
                     user.save()
+                    messages.success(request, "Account activated successfully!!")
+                    return redirect("login")
 
