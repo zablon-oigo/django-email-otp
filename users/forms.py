@@ -12,3 +12,8 @@ class CustomerUserChangeForm(UserChangeForm):
 class LoginForm(forms.Form):
     email=forms.EmailField()
     password=forms.CharField(max_length=65, widget=forms.PasswordInput)
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model=CustomUser
+        fields=["email","password1","password2"]
