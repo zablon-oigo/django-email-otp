@@ -4,6 +4,7 @@ from django.contrib import messages
 from .models import OTPToken
 from django.contrib.auth import get_user_model
 User=get_user_model()
+from django.core.mail import send_mail
 from django.utils import timezone
 def index(request):
     context={
@@ -71,3 +72,19 @@ def resend_otp(request):
             user = get_user_model().objects.get(email=user_email)
             otp = OTPToken.objects.create(user=user, expire=timezone.now() + timezone.timedelta(minutes=5))
             
+            subject="Email Verification"
+            message = f"""
+                                Hi {user.email}, here is your OTP {otp.otp_code} 
+                                it expires in 5 minute, use the url below to redirect back to the website
+                                http://127.0.0.1:8000/verify-email/{user.email}
+                                
+                                """
+            sender = ""
+            receiver = [user.email, ]
+            send_mail(
+                    subject,
+                    message,
+                    sender,
+                    receiver,
+                    fail_silently=False,
+                )
