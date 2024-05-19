@@ -20,7 +20,8 @@ class RegisterForm(UserCreationForm):
     
     def clean_email(self):
         data=self.cleaned_data["email"]
-        if CustomUser.objects.filter(email=data).exists():
+        qs=CustomUser.objects.exclude(id=self.instance).filter(email=data)
+        if qs.exists():
             raise forms.ValidationError("Email already in use")
         return data
     def clean_password2(self):
