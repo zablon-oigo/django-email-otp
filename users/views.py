@@ -90,3 +90,7 @@ def resend_otp(request):
                 )
             messages.success(request, "A new OTP has been sent to your email-address")
             return redirect("verify-email",email=user.email)
+        
+        else:
+            messages.warning(request, "This email is not registered")
+            return redirect("resend-otp")
