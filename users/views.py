@@ -88,3 +88,5 @@ def resend_otp(request):
                     receiver,
                     fail_silently=False,
                 )
+            messages.success(request, "A new OTP has been sent to your email-address")
+            return redirect("verify-email",email=user.email)
