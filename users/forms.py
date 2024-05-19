@@ -17,3 +17,9 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model=CustomUser
         fields=["email","password1","password2"]
+    
+    def clean_email(self):
+        data=self.cleaned_data["email"]
+        if CustomUser.objects.filter(email=data).exists():
+            raise forms.ValidationError("Email already in use")
+        return data
