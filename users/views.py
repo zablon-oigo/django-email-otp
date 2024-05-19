@@ -94,3 +94,5 @@ def resend_otp(request):
         else:
             messages.warning(request, "This email is not registered")
             return redirect("resend-otp")
+    context = {}
+    return render(request, "resend.html", context)
