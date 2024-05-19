@@ -63,4 +63,11 @@ def verify_email(request,email):
         return render(request, "token.html", context)
 
             
-
+def resend_otp(request):
+    if request.method == 'POST':
+        user_email = request.POST["otp_email"]
+        
+        if get_user_model().objects.filter(email=user_email).exists():
+            user = get_user_model().objects.get(email=user_email)
+            otp = OTPToken.objects.create(user=user, expire=timezone.now() + timezone.timedelta(minutes=5))
+            
