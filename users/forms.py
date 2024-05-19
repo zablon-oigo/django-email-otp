@@ -23,3 +23,8 @@ class RegisterForm(UserCreationForm):
         if CustomUser.objects.filter(email=data).exists():
             raise forms.ValidationError("Email already in use")
         return data
+    def clean_password2(self):
+        cd=self.cleaned_data
+        if cd['password']!= cd['password2']:
+            raise forms.ValidationError("Passwords dont match")
+        return cd['password2']
