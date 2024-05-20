@@ -14,6 +14,10 @@ class LoginForm(forms.Form):
     password=forms.CharField(max_length=65, widget=forms.PasswordInput)
 
 class RegisterForm(UserCreationForm):
+    email=forms.CharField(widget=forms.EmailInput(attrs={"placeholder": "Enter email-address"}))
+    password1=forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"placeholder": "Enter password"}))
+    password2=forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={"placeholder": "Confirm password"}))
+    
     class Meta:
         model=CustomUser
         fields=["email","password1","password2"]
