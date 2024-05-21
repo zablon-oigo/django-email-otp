@@ -97,3 +97,8 @@ def resend_otp(request):
             return redirect("resend-otp")
     context = {}
     return render(request, "resend.html", context)
+
+def logout_user(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect("login")
