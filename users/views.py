@@ -25,7 +25,7 @@ def register_user(request):
     
     else:
         form=RegisterForm()
-    return render(request, "users/register.html",{"form":form})
+    return render(request, "register.html",{"form":form})
 
 def login_user(request):
     if request.method == "POST":
@@ -40,7 +40,7 @@ def login_user(request):
     
     else:
         form=LoginForm()
-    return render(request, "users/login.html", {"form":form})
+    return render(request, "login.html", {"form":form})
         
 
 def verify_email(request,email):
