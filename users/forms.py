@@ -24,7 +24,7 @@ class RegisterForm(UserCreationForm):
     
     def clean_email(self):
         data=self.cleaned_data["email"]
-        qs=CustomUser.objects.exclude(id=self.instance).filter(email=data)
+        qs=CustomUser.objects.filter(email=data)
         if qs.exists():
             raise forms.ValidationError("Email already in use")
         return data
