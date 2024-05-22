@@ -18,7 +18,7 @@ def register_user(request):
         form=RegisterForm(request.POST)
         if form.is_valid():
             user=form.save(commit=False)
-            user.is_active=True
+            user.is_active=False
             user.save()
             messages.success(request, "Account created successfully,Please check your email")
             return redirect("verify-email")
