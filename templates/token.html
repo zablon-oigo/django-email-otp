@@ -1,1 +1,16 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method='POST'>
+    {% csrf_token %}
+    <h3><strong>Verify Email</strong></h3>
+    <div class="">
+        <label class="">OTP</label>
+        <input class="" name="" placeholder="Enter OTP">
+      </div>
+      <button type="submit">Activate Account</button>
+      <p>Need a new OTP? <a href="{% url 'resend-otp' %}">Resend OTP</a></p>
+
+</form>
+{% endblock %}
