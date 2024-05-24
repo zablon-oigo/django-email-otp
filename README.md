@@ -9,19 +9,19 @@
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/zablon-oigo/django-email-otp.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd django-email-otp
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+  pip install -r requirements.txt
 ```
 ## Running Tests
 
