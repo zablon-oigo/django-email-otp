@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import OTPToken
@@ -21,7 +21,7 @@ def register_user(request):
             user.is_active=False
             user.save()
             messages.success(request, "Account created successfully,Please check your email")
-            return redirect("verify-email",email=request.POST['email'])
+        return redirect("verify-email",email=request.POST['email'])
     
     else:
         form=RegisterForm()
@@ -49,7 +49,7 @@ def verify_email(request,email):
 
         if request.method == "POST":
             if user_otp.otp_code == request.POST['otp_code']:
-                if user_otp.otp_expires_at > timezone.now():
+                if user_otp.expire > timezone.now():
                     user.is_active=True
                     user.save()
                     messages.success(request, "Account activated successfully!!")
