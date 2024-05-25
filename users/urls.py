@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import verify_email,login_user,register_user,logout_user,index
+from .views import verify_email,login_user,register_user,logout_user,index,resend_otp
 
 urlpatterns=[
     path("",index,name="home"),
     path("login/", login_user, name="login"),
     path("register/", register_user, name="register"),
     path("logout/", logout_user, name="logout"),
-    path("verify-email/<slug:email>",verify_email, name="verify-email"),
+    path("verify-email/<email>",verify_email, name="verify-email"),
+     path("resend-otp",resend_otp, name="resend-otp"),
 ]
