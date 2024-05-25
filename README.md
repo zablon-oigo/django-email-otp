@@ -4,6 +4,8 @@
 **Client:** HTML , TailwindCSS
 
 **Server:** Python , Django
+# Demo
+[django-otp](https://github.com/zablon-oigo/django-email-otp.git)
 ## Run Locally
 
 Clone the project
