@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method='POST'>
+    {% csrf_token %}
+    <h3>
+        <strong>Resend One Time Password</strong>
+    </h3>
+    <div class="">
+        <label class="">Email Address</label>
+        <input type="email" placeholder="Enter your Email">
+      </div>
+      <button type="submit">Send OTP</button>
+</form>
+{% endblock %}
