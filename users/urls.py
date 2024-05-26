@@ -6,6 +6,6 @@ urlpatterns=[
     path("login/", login_user, name="login"),
     path("register/", register_user, name="register"),
     path("logout/", logout_user, name="logout"),
-    path("verify-email/<email>",verify_email, name="verify-email"),
-     path("resend-otp",resend_otp, name="resend-otp"),
+    path("verify-email/<username>",verify_email, name="verify-email"),
+    path("resend-otp",resend_otp, name="resend-otp"),
 ]
