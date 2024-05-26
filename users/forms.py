@@ -15,21 +15,10 @@ class LoginForm(forms.Form):
 
 class RegisterForm(UserCreationForm):
     email=forms.CharField(widget=forms.EmailInput(attrs={"placeholder": "Enter email-address"}))
+    username=forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Enter username"}))
     password1=forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"placeholder": "Enter password"}))
     password2=forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={"placeholder": "Confirm password"}))
     
     class Meta:
         model=CustomUser
-        fields=["email","password1","password2"]
-    
-    def clean_email(self):
-        data=self.cleaned_data["email"]
-        qs=CustomUser.objects.filter(email=data)
-        if qs.exists():
-            raise forms.ValidationError("Email already in use")
-        return data
-    def clean_password2(self):
-        cd=self.cleaned_data
-        if cd['password']!= cd['password2']:
-            raise forms.ValidationError("Passwords dont match")
-        return cd['password2']
+        fields=["email","username","password1","password2"]
